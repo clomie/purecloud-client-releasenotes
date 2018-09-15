@@ -14,11 +14,15 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dark fixed app color="cyan">
-      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-side-icon @click="drawer = !drawer" />
+      <v-toolbar-title v-text="title" />
+      <v-spacer />
+      <v-btn icon to="/">
+        <v-icon>home</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
-      <v-container>
+      <v-container grid-list-md>
         <nuxt />
       </v-container>
     </v-content>
