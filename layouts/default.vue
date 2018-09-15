@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed app>
-      <v-list>
+      <v-list subheader>
+        <v-subheader>versions</v-subheader>
         <v-list-tile router :to="item.to" :key="i" v-for="(item, i) in items" exact>
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -30,6 +31,8 @@
 </template>
 
 <script>
+import { DateTime } from 'luxon'
+
 export default {
   data() {
     return {
@@ -40,12 +43,16 @@ export default {
   },
   computed: {
     items() {
-      return this.commits.map(commit => ({
-        icon: 'apps',
-        version: commit.commit.message,
-        date: commit.commit.committer.date,
-        to: `/releasenotes/${commit.sha}`
-      }))
+      return this.commits.map(this.mapCommitToListItem)
+    }
+  },
+  methods: {
+    mapCommitToListItem({ commit, sha }) {
+      const icon = 'label'
+      const version = commit.message
+      const date = DateTime.fromISO(commit.committer.date).toFormat('yyyy/MM/dd HH:mm')
+      const to = `/releasenotes/${sha}`
+      return { icon, version, date, to }
     }
   },
   async mounted() {
