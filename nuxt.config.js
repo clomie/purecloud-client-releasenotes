@@ -57,7 +57,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/vuetify'],
+  plugins: ['@/plugins/vuetify', '@/plugins/markdown-it'],
 
   /*
   ** Nuxt.js modules
@@ -66,6 +66,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'
   ],
+
   /*
   ** Axios module configuration
   */
